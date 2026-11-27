@@ -90,7 +90,7 @@ Cửa sổ data: 21 ngày (05/11–25/11/2026) → quy ra tháng × 30/21.
 - Ai có thể bị hại nếu AI sai, và nhóm chặn thế nào:
 
 ## §10. Phân công & changelog
-- Phân công có tên (theo chặng, chia cặp — guide "Cách chia việc"): __
+- Phân công có tên (theo chặng, chia cặp — guide "Cách chia việc"): Lê Nhật Linh (đội trưởng) — §0–§2, §4, canvas, nộp checkpoint · Đặng Thanh Hải — đào data, kịch bản phỏng vấn · Hoàng Gia Khiêm — `codebase/`, `eval/`, `data/DATA_CARD.md` · Lê Hải Bắc — phỏng vấn P1–P3, `evidence/summary.md`. Cặp: Hải + Bắc (bằng chứng), Linh + Khiêm (thiết kế → bản chạy thử)
 - Dùng AI vào việc gì (2–3 dòng; chi tiết `docs/ai-usage.md`):
 - Nhật ký thay đổi — **mọi thay đổi sau CP2 19:30 Thứ Sáu 27/11 phải có dòng ở đây**:
 
