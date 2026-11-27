@@ -20,11 +20,7 @@
 
 | | |
 |---|---|
-<<<<<<< HEAD
 | Dùng để làm gì | Nguồn cho công cụ tìm đoạn bài trong `codebase/tools.py`. File: **`data/lesson/segments.json`** — mọi mã đoạn AI dẫn ra phải có trong file này (metric `moc_dung_doan`, `khong_vuot_tham_quyen` trong `eval/metric_spec.yaml` kiểm đúng file này) |
-=======
-| Dùng để làm gì | File `data/lesson/segments.json`: nguồn cho công cụ tìm đoạn bài trong `codebase/tools.py`; mọi mã đoạn AI dẫn ra phải có trong file này (metric `moc_dung_doan`, `khong_vuot_tham_quyen`) |
->>>>>>> 8476b1d897c3e2bf29d1146137a3664088426d76
 | Từ đâu | **Chưa có.** Data BTC chỉ ghi tên file lời giảng (`Day01/d01-r1-v01.txt`…), không kèm nội dung. Cần chốt: xin transcript từ BTC, hoặc nhóm viết lại đoạn ngắn từ video Day01 và Day04 |
 | Xử lý những bước gì | Dự kiến: chia mỗi video thành đoạn ngắn, gán mã `<video>#S<n>` (vd `d01-r1-v01#S1`) kèm mốc giây bắt đầu và kết thúc · chỉ chép đoạn trích ngắn hoặc viết lại, không chép nguyên bài |
 | Số dòng / số đoạn | __ (điền khi có) |
