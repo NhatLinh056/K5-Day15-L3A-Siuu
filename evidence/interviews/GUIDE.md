@@ -13,6 +13,7 @@
 3. Từ lúc thấy chưa hiểu đến lúc hiểu (hoặc bỏ qua) mất bao lâu?
 4. Bạn đã thử cách nào: tua lại, hỏi trợ giảng dưới video, hỏi bạn, ChatGPT riêng, bỏ qua? Cách đó hỏng ở đâu? Vì sao bạn vẫn dùng nó?
 5. *(Nếu đã hỏi trợ giảng dưới video)* Lần gần nhất bạn hỏi gì? Câu trả lời có giúp bạn tìm lại đúng đoạn trong bài không? Sau đó bạn làm gì?
+5b. Câu gần nhất bạn hỏi dưới video là gì? Bạn mở lại lịch sử chat và đọc **nguyên văn** giúp mình được không? *(Ghi đúng từng chữ vào mục "Trích nguyên văn", bỏ mọi thông tin cá nhân — câu này có thể thành câu thử `nguoi_dung: P_` trong `eval/benchmark.csv`.)*
 6. Trong 1 tháng qua, chuyện này xảy ra khoảng bao nhiêu lần?
 7. Có bài nào bạn mở ra rồi không xem hết không? Lần gần nhất là vì sao?
 8. Mấy ngày gần đây bạn còn xem trang pre-class không? Nếu ít đi thì vì sao?

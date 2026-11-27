@@ -8,7 +8,7 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 |---|---|---|---|---|
 | Code bản chạy thử | | | | |
 | Prompt / thiết kế lời gọi mô hình | | | | |
-| Đào data (viết script đếm, gợi ý nhãn) | | | Kiểm tay __ dòng, khớp __ | |
+| Đào data (viết script đếm, gợi ý nhãn) | Claude Code (Claude Opus 5.5) | Viết `evidence/count.py`, chạy và soạn `evidence/data-mining.md`; viết kịch bản phỏng vấn `evidence/interviews/GUIDE.md` | Kiểm tay __ số (mở CSV bằng Excel/Sheets đếm lại), khớp __/__ · đọc lại cách đếm, mẫu số từng chỉ số | Đặng Thanh Hải |
 | Rà câu hỏi phỏng vấn / khảo sát | | Chỉ rà câu dẫn dắt | | |
 | Viết câu thử (benchmark) | | | Mỗi câu thử có `source`; câu thử AI viết được ghi rõ | |
 | Sinh data `synthetic` (nếu có) | | | Seed __ · kiểm tay __ dòng | |

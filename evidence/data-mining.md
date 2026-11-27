@@ -40,18 +40,52 @@
 | Trả lời bị gắn `missing_context` (thiếu ngữ cảnh) | 100 / 1.108 | 9,0% | |
 | Tin nhắn là **lần hỏi lại** cùng câu (`ask_count ≥ 1`) | 35 / 137 | 25,5% | Chỉ trên tin có ghi `ask_count` |
 | Câu hỏi rất ngắn (<15 ký tự) | 114 / 1.108 | 10,3% | Dễ mơ hồ |
-| Ôn tập cuối ngày: đúng lần đầu | 1.569 / 1.968 | 79,7% | 77 học viên · **7/40 ý kiến thức <70%**, thấp nhất `agentic_fit_scoring_decision` 40% (n=20), `cot_task_fit` 59% (n=27), `chatbot_is_app_around_model` 61% (n=41) |
+| Ôn tập cuối ngày: đúng lần đầu | 1.569 / 1.968 | 79,7% | 77 học viên · **7/40 ý kiến thức <70%** (xem bảng dưới) |
 | Mini lab "xong" bằng nút **bỏ qua** | 102 / 453 | 22,5% | |
+
+**Ôn tập cuối ngày — 7 ý kiến thức đúng lần đầu <70%** (≥20 lượt, `lan_thu = 1`):
+
+| Ý kiến thức (`kc_code`) | Đúng lần đầu |
+|---|---|
+| `agentic_fit_scoring_decision` | 8/20 (40%) |
+| `cot_task_fit` | 16/27 (59%) |
+| `chatbot_is_app_around_model` | 25/41 (61%) |
+| `complete_ai_problem_statement` | 15/23 (65%) |
+| `select_rule_workflow_agent_level` | 15/23 (65%) |
+| `system_prompt_contract` | 18/27 (67%) |
+| `construct_eval_plan` | 16/23 (69,6%) |
+
+**Số câu hỏi dưới video / học viên** (145 người có hỏi, trong 21 ngày) — dùng cho persona chi phí (`spec.md` §2, §8):
+
+| Kiểu | Số người |
+|---|---|
+| Hỏi 1 câu | 40/145 (27,6%) |
+| Hỏi 2–5 câu | 42/145 (29,0%) |
+| Hỏi 6–15 câu | 47/145 (32,4%) |
+| Hỏi >15 câu | 16/145 (11,0%) — nhiều nhất 72 câu |
+
+Trung vị: 4 câu / người / 21 ngày.
 
 ## 4. ≥5 ví dụ cụ thể (mã đã ẩn danh, không đoán ai là ai)
 
 1. `L0271` · video `d01-r1-v02`: tua lùi ≥10s **48 lần** trong một video (vẫn xem tới cuối).
 2. `L0271` · video `d02-r2-v05`: tua lùi ≥10s 26 lần.
 3. Chat `C00983` · `Day01/d01-r1-v05.txt`: câu hỏi 29 ký tự, trả lời bị gắn `missing_context = True`.
-4. `L0002` · `program-day01:ai-llm-foundation`: mở bài, 0 mục xong.
-5. `L0004` · `program-day01:ai-llm-foundation`: mở bài, 0 mục xong.
+4. Chat `C00218` · `Day01/d01-r1-v03.txt`: câu hỏi 28 ký tự, trả lời 266 ký tự **không dẫn mốc nào** trong bài.
+5. Chat `C01187` · `Day06/d06-r1-v01.txt`: câu hỏi 92 ký tự, trả lời 600 ký tự không dẫn mốc nào.
+6. Chat `C01056`, `C00962` · `Day01/d01-r1-v01.txt`: câu hỏi chỉ **2 ký tự**.
+7. `L0002` · `program-day01:ai-llm-foundation`: mở bài, 0 mục xong.
 
-*(Thêm ví dụ trả lời không có `moc_trich_dan` khi viết bộ câu thử ở CP2.)*
+## 4b. Nguồn `data_that` cho bộ câu thử (cấp cho người viết `eval/benchmark.csv`)
+
+Data **không có nội dung câu hỏi**, chỉ có mã dòng, video, độ dài. Nên câu thử ghi nguồn `data_that` thì câu chữ do nhóm viết; data quyết định **chủ đề / kiểu câu**, phải ghi rõ trong cột `source`. Tất cả mã dưới đây in ra bằng `evidence/count.py` (mục "Ví dụ cho bộ câu thử").
+
+| Kiểu câu thử | Căn cứ trong data | Mã dòng ví dụ |
+|---|---|---|
+| Câu mơ hồ, rất ngắn → phải hỏi lại | 114/1.108 câu <15 ký tự | `C01056` (2 ký tự, d01-r1-v01) · `C00048` (6, d01-r1-v01) · `C00370` (11, d04-r3-v03) · `C00321` (2, d04-r3-v01) |
+| Câu thiếu ngữ cảnh | 100/1.108 trả lời gắn `missing_context` | `C00983` (d01-r1-v05) · `C00992`, `C00837` (d02-r2-v01) |
+| Câu dễ bị trả lời không dẫn nguồn | 231/562 trả lời không dẫn mốc | `C00218`, `C00955`, `C00951` (d01-r1-v03) · `C00882` (d05-r2-v06) |
+| Câu về ý học viên hay sai | 7 ý kiến thức <70% ở bảng trên | ví dụ `chatbot_is_app_around_model` 25/41 · `cot_task_fit` 16/27 · `system_prompt_contract` 18/27 |
 
 ## 5. Giới hạn của data
 

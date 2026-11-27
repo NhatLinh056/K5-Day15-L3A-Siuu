@@ -101,8 +101,8 @@ for src in ("video_quiz", "pre_post_post"):
     hard = sorted(((sum(v) / len(v), k, len(v)) for k, v in by_kc.items() if len(v) >= 20))
     low = [x for x in hard if x[0] < 0.7]
     print(f"  ý kiến thức có ≥20 lượt: {len(hard)} · trong đó đúng lần đầu <70%: {len(low)}")
-    for r, k, n in low[:6]:
-        print(f"    {k}: {r:.0%} (n={n})")
+    for r, k, n in low:
+        print(f"    {k}: {round(r * n)}/{n} ({r:.0%})")
 
 skipped = [e for e in learner_ev if e["type"] == "quiz_item_dismissed" and js(e).get("skipped_stop") is True]
 print("Câu hỏi giữa video bị đóng không trả lời:",
@@ -149,3 +149,26 @@ for c in vq:
         break
 for h, l in sorted(stuck)[:2]:
     print(f"  {h} · {l}: mở bài, 0 mục xong")
+
+# Nguồn data_that cho bộ câu thử: câu hỏi rất ngắn, thiếu ngữ cảnh, trả lời không dẫn mốc.
+# Chỉ in mã dòng + video + độ dài (data không có nội dung câu hỏi).
+print("\n== Ví dụ cho bộ câu thử (data_that) ==")
+print("Câu hỏi dưới video <15 ký tự (10 dòng đầu theo thời gian):")
+for c in sorted((c for c in vq if int(c["do_dai_cau_hoi"] or 0) < 15), key=lambda c: c["asked_at"])[:10]:
+    print(f"  {c['id']} · {c['transcript']} · {c['do_dai_cau_hoi']} ký tự")
+print("Trả lời bị gắn missing_context (5 dòng đầu):")
+for c in [c for c in vq if rep.get(c["id"], {}).get("missing_context") is True][:5]:
+    print(f"  {c['id']} · {c['transcript']} · câu hỏi {c['do_dai_cau_hoi']} ký tự")
+print("Trả lời không dẫn mốc nào trong bài (5 dòng đầu, từ 13/11):")
+for c in [c for c in vq if "moc_trich_dan" in rep.get(c["id"], {}) and not rep[c["id"]]["moc_trich_dan"]][:5]:
+    print(f"  {c['id']} · {c['transcript']} · câu hỏi {c['do_dai_cau_hoi']} ký tự · trả lời {c['do_dai_tra_loi']} ký tự")
+
+# Persona chi phí (spec §2, §8): phân bố số câu hỏi dưới video / học viên trong 21 ngày.
+print("\n== Số câu hỏi dưới video / học viên (145 người có hỏi) ==")
+per = Counter(c["hv"] for c in vq)
+bins = {"1 câu": 0, "2–5 câu": 0, "6–15 câu": 0, ">15 câu": 0}
+for n in per.values():
+    bins["1 câu" if n == 1 else "2–5 câu" if n <= 5 else "6–15 câu" if n <= 15 else ">15 câu"] += 1
+for k, v in bins.items():
+    print(f"  {k}: {pct(v, len(per))}")
+print(f"  trung vị: {sorted(per.values())[len(per) // 2]} câu · nhiều nhất: {max(per.values())} câu")
