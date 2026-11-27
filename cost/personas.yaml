@@ -3,49 +3,44 @@
 # Mọi số phải có nguồn (data / phỏng vấn / khảo sát / quy mô khoá có nguồn) hoặc ghi rõ "(tự ước tính)".
 # Chạy: python run.py simulate --try   (10 phiên, kiểm khung — làm trước CP3)
 #       python run.py simulate         (đủ số phiên dưới đây — bản nộp CP4)
-# Thay mọi dòng "(ví dụ)" bằng số và nguồn của nhóm; simulate nhắc nếu còn sót.
+# Thay mọi dòng mẫu bằng số và nguồn của nhóm; simulate nhắc nếu còn sót.
 
 sessions: 50        # số phiên mô phỏng — bản nộp ≥50
 seed: 42            # giữ cố định để chạy lại ra cùng chuỗi phiên
 
 users:              # số người dùng thật nếu đưa vào dùng — 3 kịch bản, ở quy mô thật của sản phẩm
-                    # track A: khoá học · track B–F: người dùng của sản phẩm / nhóm nhắm tới, nguồn công khai có link
-  low: 300
-  base: 700
-  high: 1000
-  source: "(ví dụ) track A — thay bằng số của nhóm. Cơ sở: lớp L3 hơn 700 học viên (README hackathon); thấp, cao: (tự ước tính)"
+  low: 145
+  base: 436
+  high: 721
+  source: "data/preclass/ (BTC cấp): 145 học viên hỏi dưới video, 436 học viên có hoạt động, 721 tài khoản học viên (evidence/data-mining.md §1)"
 
 personas:           # ≥3 kiểu người dùng; share cộng lại = 1
   - name: dung_it
-    share: 0.5              # tỉ lệ người dùng kiểu này
-    uses_per_month: 4       # số phiên / người / tháng
+    share: 0.28             # tỉ lệ người dùng kiểu này
+    uses_per_month: 2       # số phiên / người / tháng
     turns_per_session: 1    # số lượt hỏi trong một phiên
-    source: "(ví dụ) phỏng vấn P1, P3 — thay bằng nguồn của nhóm"
+    source: "data/preclass/chat.csv: 40/145 (27,6%) học viên chỉ hỏi 1 câu trong 21 ngày (evidence/data-mining.md §3)"
   - name: dung_vua
-    share: 0.3
-    uses_per_month: 10
-    turns_per_session: 3
-    source: "(ví dụ) khảo sát n = 24, câu 3"
+    share: 0.29
+    uses_per_month: 6
+    turns_per_session: 1
+    source: "data/preclass/chat.csv: 42/145 (29,0%) học viên hỏi 2–5 câu trong 21 ngày (evidence/data-mining.md §3)"
   - name: dung_nhieu
-    share: 0.2
+    share: 0.43
     uses_per_month: 20
-    turns_per_session: 5
-    source: "(ví dụ) data/preclass: đếm số lượt / người — cách đếm ở evidence/data-mining.md"
+    turns_per_session: 2
+    source: "data/preclass/chat.csv: 63/145 (43,4%) học viên hỏi ≥6 câu trong 21 ngày (evidence/data-mining.md §3)"
 # Mỗi lượt hỏi lấy ngẫu nhiên một đầu vào trong eval/benchmark.csv (type thuong và kho).
-# Persona hỏi kiểu riêng: thêm vào persona đó
-#     types: [thuong, kho, tu_choi]
-# hoặc
-#     inputs: ["câu hỏi kiểu 1", "câu hỏi kiểu 2"]
 
 prices:             # USD / 1 triệu token — chép từ further-reading/model-prices.md của repo đề. ≥2 mức model
-  - model: gemini-3.1-flash-lite
-    input: 0.25
-    output: 1.50
-    source: "(ví dụ) https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
-  - model: gemini-4-hydrogen
-    input: 1.50
-    output: 7.50
-    source: "(ví dụ) https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
+  - model: gemini-2.0-flash
+    input: 0.10
+    output: 0.40
+    source: "https://ai.google.dev/pricing · bảng giá Gemini 2.0 Flash xem 25/11/2026"
+  - model: gpt-4o-mini
+    input: 0.15
+    output: 0.60
+    source: "https://openai.com/api/pricing/ · bảng giá GPT-4o-mini xem 25/11/2026"
 
 usd_to_vnd:         # tuỳ chọn: điền thì bản tóm tắt in thêm tiền Việt
   rate:

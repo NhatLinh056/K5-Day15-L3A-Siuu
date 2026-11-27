@@ -83,14 +83,14 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 
 | Thành phần | Thật / Giả | Ghi chú |
 |---|---|---|
-| Lời gọi AI ở quyết định trung tâm | **Thật** (bắt buộc từ CP3) | Model: ____ |
-|  |  |  |
+| Lời gọi AI ở quyết định trung tâm | **Thật** (bắt buộc từ CP3) | Model: `openai/gpt-oss-120b` (chạy qua Groq API chuẩn OpenAI, cấu hình trong `.env`; `codebase/ai.py` hỗ trợ OpenAI / Gemini / Anthropic) |
+| Công cụ `find_segments` | **Thật** (đọc cục bộ `data/lesson/segments.json`) | Dữ liệu 16 đoạn `synthetic` cho 4 video Day01, Day04 (mốc giây tự đặt — xem `data/DATA_CARD.md`) |
 
 ## Dùng AI vào việc gì
 
 2–3 dòng (bắt buộc): nhóm dùng công cụ AI nào để làm gì, người kiểm lại phần nào. Chi tiết: [docs/ai-usage.md](docs/ai-usage.md). Coding agent đọc [AGENTS.md](AGENTS.md).
 
-____
+Nhóm dùng Claude Code để viết script đào data (`evidence/count.py`), soạn nháp 16 đoạn bài giảng `synthetic` (`data/lesson/segments.json`) và câu thử `data_that`; dùng AI hỗ trợ rà cấu trúc `spec.md`, ghép `eval/benchmark.csv` và kiểm lỗi code. Thành viên kiểm tay lại các con số thống kê bằng Excel, rà sạch chủ đề ngoài bài trong `segments.json` và chạy kiểm thử qua `run.py check`.
 
 ## File mẫu — điền ở bước nào
 

@@ -40,6 +40,6 @@ Khung chỉ dùng thư viện chuẩn của Python. Thêm thư viện thì ghi v
 
 ## Quy ước của nhóm
 
-- Ngôn ngữ trả lời người dùng: __
-- Phong cách code / đặt tên: __
-- Ai duyệt thay đổi do agent tạo trước khi commit: __
+- Ngôn ngữ trả lời người dùng: Tiếng Việt (gọn, rõ, cho người mới, xưng "mình" – "bạn")
+- Phong cách code / đặt tên: Python 3.10+ chuẩn thư viện (PEP 8, `snake_case`, hằng số `UPPER_CASE`); mọi công cụ gắn `@tool`, mọi lời gọi AI qua `call_model` (`@model_call`)
+- Ai duyệt thay đổi do agent tạo trước khi commit: Lê Nhật Linh (đội trưởng) kiểm tra diff và chạy `python run.py check` trước khi commit/push

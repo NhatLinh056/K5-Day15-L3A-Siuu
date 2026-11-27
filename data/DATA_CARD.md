@@ -33,11 +33,11 @@
 | | |
 |---|---|
 | Dùng để làm gì | Chấm bản chạy thử (`python run.py eval`) |
-| Từ đâu | `data_that`: câu chữ do nhóm viết, kiểu câu hoặc chủ đề lấy từ data (cột `source` ghi mã dòng hoặc `kc_code` và con số) · `tu_viet`: câu tấn công và câu ngoài bài · `nguoi_dung`: sẽ lấy từ phỏng vấn (câu 5b trong [GUIDE](../evidence/interviews/GUIDE.md)) |
+| Từ đâu | `data_that`: câu chữ do nhóm viết, kiểu câu hoặc chủ đề lấy từ data (cột `source` ghi mã dòng hoặc `kc_code` và con số) · `tu_viet`: câu tấn công và câu ngoài bài · `nguoi_dung`: 5 câu tình huống lấy từ khảo sát (`BAC1–BAC5`) |
 | Xử lý những bước gì | Input có tiền tố `[video <mã>]` để báo học viên đang ở video nào · bỏ mọi thông tin cá nhân |
-| Số dòng / số đoạn | 10 câu: thuong 3 · kho 5 · tu_choi 2 (2 câu tấn công B16, B17) · từ data thật 7/10 · B01–B04 Hải · B05–B07 Lê Hải Bắc · B12, B16, B17 Khiêm |
-| Phiên bản / ngày lấy | 27/11/2026, bản CP2 |
-| Nhãn | thật (chủ đề) + nhóm viết (câu chữ) |
-| Giới hạn | Chưa có câu `nguoi_dung` · câu dồn vào Day01, Day04 · `expected` mô tả **hành vi và chủ đề**; `pass_criterion` ghi **phạm vi mã** (video hoặc ngày) thay vì mã cụ thể vì chưa có Dataset 2 |
+| Số dòng / số đoạn | 23 câu: thuong 6 · kho 12 · tu_choi 5 (4 câu tấn công B16, B17, K02, K03) · từ người dùng / data thật 17/23 (73,9%) |
+| Phiên bản / ngày lấy | 27/11/2026, bản CP3 |
+| Nhãn | thật (người dùng & data) + nhóm viết (câu chữ & tấn công) |
+| Giới hạn | Câu dồn vào Day01, Day04 · `expected` mô tả **hành vi và chủ đề**; `pass_criterion` ghi **phạm vi mã** (video hoặc ngày) khớp với Dataset 2 (`data/lesson/segments.json`, 16 đoạn v1 đã hoàn thiện) |
 
-**Data `synthetic` (nhóm tự sinh):** `data/lesson/segments.json` (16 đoạn). Cách sinh: Claude Code soạn nháp từng đoạn theo tên `kc_code` của bài, không dùng seed (viết tay, không sinh ngẫu nhiên); người kiểm: Đặng Thanh Hải, kiểm tay __/16 đoạn (đúng kiến thức, không lẫn chủ đề cấm). Data tự dựng **không phải bằng chứng pain**.
+**Data `synthetic` (nhóm tự sinh):** `data/lesson/segments.json` (16 đoạn). Cách sinh: Claude Code soạn nháp từng đoạn theo tên `kc_code` của bài, không dùng seed (viết tay, không sinh ngẫu nhiên); người kiểm: Đặng Thanh Hải & Lê Nhật Linh — đã kiểm đủ 16/16 đoạn (đúng schema, khớp kiến thức và `expected` của 23 câu thử, 0/16 đoạn chứa chủ đề ngoài bài: RAG / transformer / embedding / agentic fit / LoRA). Data tự dựng **không phải bằng chứng pain**.

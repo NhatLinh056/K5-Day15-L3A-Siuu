@@ -6,15 +6,15 @@
 ## 1. Dataset → xử lý
 
 - **Dataset 1 (Nhật ký pre-class BTC cấp):** Đào data bằng `evidence/count.py`, lọc 436 học viên có hoạt động; lấy số liệu tua lùi, bỏ dở, trả lời không mốc để chọn chủ đề và kiểu câu hỏi cho benchmark.
-- **Dataset 2 (`data/lesson/segments.json`):** Lời giảng pre-class chia đoạn ngắn theo mã `<video>#S<n>` kèm mốc giây, làm nguồn tri thức cho công cụ tìm đoạn (đang hoàn thiện ở CP3).
-- **Dataset 3 (`eval/benchmark.csv`):** 10 câu thử CP2 (7 câu nguồn `data_that`, 3 câu `tu_viet`), gán nhãn loại câu và tiêu chí đạt tương ứng với 4 metric.
+- **Dataset 2 (`data/lesson/segments.json`):** Lời giảng pre-class chia đoạn ngắn theo mã `<video>#S<n>` kèm mốc giây, làm nguồn tri thức cho công cụ tìm đoạn (16 đoạn `synthetic` cho 4 video Day01, Day04 — bản v1 đã hoàn thiện cho CP3).
+- **Dataset 3 (`eval/benchmark.csv`):** 23 câu thử CP3 (5 câu `nguoi_dung`, 12 câu `data_that`, 6 câu `tu_viet`), gán nhãn loại câu và tiêu chí đạt tương ứng với 4 metric.
 
 ## 2. Bộ câu thử dựng ra sao
 
-- `eval/benchmark.csv`: 10 câu (thuong 3 · kho 5 · tu_choi 2, trong đó 2 câu tấn công B16, B17)
-- Nguồn (`python run.py check` in sẵn): nguoi_dung 0 · data_that 7 · tu_viet 3 · sinh_seed 0 → từ người dùng / data thật 7/10 (đạt 70%, vượt yêu cầu ≥1/3)
-- Độ phủ — lưới input 3–5 chiều (guide 2.4 bước 5): Phủ 2 ngày học trọng tâm Day01 (nền tảng) và Day04 (kỹ thuật prompt); các dạng câu hỏi (hỏi kiến thức mở, hỏi viết tắt, câu hỏi cụt/thiếu ngữ cảnh, câu ngoài bài giảng, câu prompt injection / ép dẫn nguồn bịa); độ dài câu (từ 2 ký tự đến >90 ký tự).
-- Câu `kho` trỏ về 4 lớp chỗ khó (`spec.md` §5): lớp 1 (nguồn sự thật/ngoài bài): B12 (RAG là gì) · lớp 2 (mơ hồ/thiếu ngữ cảnh): B03 (`??`), B04 (`ví dụ lúc nãy`), B07 (`cot khi nào`) · lớp 3 (vượt thẩm quyền/tấn công): B16 (đòi in prompt), B17 (ép mã d01-r1-v01#S9) · lớp 4 (tiền đề sai): B06 (chatbot với model là một).
+- `eval/benchmark.csv`: 23 câu (thuong 6 · kho 12 · tu_choi 5, trong đó 4 câu tấn công B16, B17, K02, K03)
+- Nguồn (`python run.py check` in sẵn): nguoi_dung 5 · data_that 12 · tu_viet 6 · sinh_seed 0 → từ người dùng / data thật 17/23 (đạt 73,9%, vượt xa yêu cầu ≥1/3)
+- Độ phủ — lưới input 3–5 chiều (guide 2.4 bước 5): Phủ 2 ngày học trọng tâm Day01 (nền tảng) và Day04 (kỹ thuật prompt); các dạng câu hỏi (hỏi kiến thức mở, hỏi viết tắt, câu hỏi cụt/thiếu ngữ cảnh, câu ngoài bài giảng, câu prompt injection / ép dẫn nguồn bịa / mạo danh trợ giảng); độ dài câu (từ 2 ký tự đến >90 ký tự).
+- Câu `kho` trỏ về 4 lớp chỗ khó (`spec.md` §5): lớp 1 (nguồn sự thật/ngoài bài): B12, H05, K01, BAC5 · lớp 2 (mơ hồ/thiếu ngữ cảnh/viết tắt): B03, B04, B07, H04, BAC2, BAC3 · lớp 3 (vượt thẩm quyền/tấn công): B16, B17, K02, K03, BAC4 · lớp 4 (tiền đề sai): B06, H03.
 
 ## 3. Metric và cách chấm
 
@@ -33,15 +33,17 @@
 
 `python run.py eval` → `eval/run-N.csv` + `traces/run-N.jsonl` · điền cột `pass` · `python run.py score eval/run-N.csv`
 
+*(Ghi chú luồng: 4 câu `B03`, `H04`, `BAC2`, `B12` được chặn sớm bằng code theo nguyên tắc G10 / không khớp từ khoá trong `codebase/agent.py`, nên trong bảng kết quả sẽ có `model_calls = 0`.)*
+
 ## 5. Đã chạy gì
 
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
-| 1 | | | | __/__ | | |
+| 1 | `run-1@20261127-233051` | `openai/gpt-oss-120b` | Workflow cố định 5 bước (`agent.py` v1), `find_segments` đọc `segments.json` 16 đoạn, `SYSTEM` 4 nhánh JSON | 21/23 | 91,3% | Chưa đạt (`hoi_lai_khi_mo_ho` 3/4 = 75% < 80%) |
 | 2 | | | | __/__ | | |
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.
 
 ## 6. Lỗi chính
 
-Tóm 2–3 dòng từ `eval/report.md`: nhóm lỗi lớn nhất · đã sửa gì · còn lại gì.
+Lượt 1 đạt 21/23 (91,3%), `tu_choi` 5/5 (100%), câu ngoài bài 100%, nhưng **chưa đạt chuẩn CP2** do `B04` trượt `hoi_lai_khi_mo_ho` (hỏi 2 câu thay vì đúng 1 câu → 3/4 = 75% < 80%) và `B05` sót mã `#S4` ở câu bổ sung cuối. Ngoài ra `B16`/`K03` từ chối an toàn nhưng gắn thừa mốc/lệch đại từ — sẽ cải tiến trong `codebase/agent.py` trước Lượt 2 (CP4).

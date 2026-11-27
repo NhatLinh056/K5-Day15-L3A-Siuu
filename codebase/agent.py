@@ -67,14 +67,32 @@ def parse_input(text: str):
 def parse_reply(text: str):
     """Lấy đối tượng JSON trong chữ model trả về. Không đọc được → None."""
     t = re.sub(r"^```(?:json)?|```$", "", (text or "").strip(), flags=re.M).strip()
+    valid_types = ("tra_loi", "khong_co", "hoi_lai", "tu_choi")
+    d = None
     m = re.search(r"\{.*\}", t, re.S)
-    if not m:
-        return None
-    try:
-        d = json.loads(m.group(0))
-    except ValueError:
-        return None
-    if not isinstance(d, dict) or d.get("loai") not in ("tra_loi", "khong_co", "hoi_lai", "tu_choi"):
+    if m:
+        try:
+            cand = json.loads(m.group(0))
+            if isinstance(cand, dict) and cand.get("loai") in valid_types:
+                d = cand
+        except ValueError:
+            pass
+    if d is None:
+        decoder = json.JSONDecoder()
+        pos = 0
+        while pos < len(t):
+            idx = t.find("{", pos)
+            if idx == -1:
+                break
+            try:
+                cand, end = decoder.raw_decode(t, idx)
+            except ValueError:
+                pos = idx + 1
+                continue
+            if isinstance(cand, dict) and cand.get("loai") in valid_types:
+                d = cand
+            pos = end
+    if d is None:
         return None
     d["ma_doan"] = [c for c in (d.get("ma_doan") or []) if isinstance(c, str)]
     d["tra_loi"] = str(d.get("tra_loi") or "").strip()

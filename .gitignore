@@ -38,3 +38,12 @@ data-btc/
 
 # Bộ đề BTC (đọc cục bộ, không commit)
 de-bai/
+
+# File tạm IDE / OS / Excel khi mở CSV chấm điểm
+~$*.csv
+~$*.xlsx
+.vscode/
+.idea/
+.pytest_cache/
+Thumbs.db
+desktop.ini

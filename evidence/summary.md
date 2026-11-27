@@ -55,8 +55,6 @@ Phỏng vấn nhiều vai thì đếm theo từng vai, không cộng chung.
 3. Phiếu R3 (học viên AI20K, đã dùng pre-class): vướng ở "Câu trả lời của AI chung chung, không gắn với bài"; kiểm lại bằng cách "Hỏi lại lần nữa xem có trả lời khác không".
 4. Phiếu R7 (học viên AI20K, đã dùng pre-class): lần gần nhất chưa hiểu "gần như cả video"; vướng ở "Tua mãi không tìm đúng đoạn", "Mất thời gian quá nên bỏ".
 5. Phiếu R8 (học viên AI20K, biết nhưng chưa dùng pre-class): hỏi AI về bài giảng thì "Đúng nhưng giải thích khác cách bài dạy, càng đọc càng rối".
-6. "…" — P1 *(chờ phỏng vấn)*
-7. "…" — P2 *(chờ phỏng vấn)*
 
 ## 4. Các nguồn có khớp nhau không
 
@@ -76,7 +74,7 @@ Giả thuyết ở `evidence/hypothesis.md`: **một phần đúng, phải đổ
 
 | Vai | Giờ hẹn | Đã xong? |
 |---|---|---|
-| Học viên AI20K, đã dùng pre-class, đã hỏi trợ giảng (phiếu R1) | __ | ☐ |
-| Học viên AI20K, đã dùng pre-class, đã hỏi trợ giảng (phiếu R11) | __ | ☐ |
-| Học viên AI20K, đã dùng pre-class, đã hỏi trợ giảng (phiếu R15) | __ | ☐ |
-| Học viên AI20K, đã dùng pre-class, đã hỏi trợ giảng (phiếu R16) | __ | ☐ |
+| Học viên AI20K, đã dùng pre-class, đã hỏi trợ giảng (phiếu R1) | Chưa chốt giờ (hỏi thêm sau CP3 nếu kịp trước CP4) | ☐ |
+| Học viên AI20K, đã dùng pre-class, đã hỏi trợ giảng (phiếu R11) | Chưa chốt giờ (hỏi thêm sau CP3 nếu kịp trước CP4) | ☐ |
+| Học viên AI20K, đã dùng pre-class, đã hỏi trợ giảng (phiếu R15) | Chưa chốt giờ (hỏi thêm sau CP3 nếu kịp trước CP4) | ☐ |
+| Học viên AI20K, đã dùng pre-class, đã hỏi trợ giảng (phiếu R16) | Chưa chốt giờ (hỏi thêm sau CP3 nếu kịp trước CP4) | ☐ |

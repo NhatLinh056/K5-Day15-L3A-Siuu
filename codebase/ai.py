@@ -19,6 +19,7 @@ Nối model thật: điền .env (chép từ .env.example), rồi viết nhánh 
 """
 import json
 import os
+import time
 import urllib.error
 import urllib.request
 
@@ -69,15 +70,27 @@ def call_model(system: str, user: str) -> dict:
             "tokens_in": int(r["tokens_in"] or 0), "tokens_out": int(r["tokens_out"] or 0)}
 
 
-def post_json(url, headers, body, timeout=90):
-    req = urllib.request.Request(
-        url, data=json.dumps(body).encode("utf-8"), method="POST",
-        headers=dict({"Content-Type": "application/json"}, **headers))
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            data = json.loads(r.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        raise RuntimeError("HTTP %d: %s" % (e.code, e.read().decode("utf-8", "replace")[:300]))
+def post_json(url, headers, body, timeout=90, retries=3):
+    payload = json.dumps(body).encode("utf-8")
+    req_headers = dict({"Content-Type": "application/json", "User-Agent": "siuu-preclass-tutor/1.0"}, **headers)
+    transient_codes = (429, 500, 502, 503, 504)
+    for attempt in range(1, retries + 1):
+        req = urllib.request.Request(url, data=payload, method="POST", headers=req_headers)
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                data = json.loads(r.read().decode("utf-8"))
+            break
+        except urllib.error.HTTPError as e:
+            msg = e.read().decode("utf-8", "replace")[:300]
+            if e.code in transient_codes and attempt < retries:
+                time.sleep(2 * attempt)
+                continue
+            raise RuntimeError("HTTP %d: %s" % (e.code, msg))
+        except (urllib.error.URLError, TimeoutError, OSError):
+            if attempt < retries:
+                time.sleep(2 * attempt)
+                continue
+            raise
     if SHOW_RAW:
         print(json.dumps(data, ensure_ascii=False, indent=2)[:3000])
     return data
