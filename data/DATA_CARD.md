@@ -21,12 +21,12 @@
 | | |
 |---|---|
 | Dùng để làm gì | Nguồn cho công cụ tìm đoạn bài trong `codebase/tools.py`. File: **`data/lesson/segments.json`** — mọi mã đoạn AI dẫn ra phải có trong file này (metric `moc_dung_doan`, `khong_vuot_tham_quyen` trong `eval/metric_spec.yaml` kiểm đúng file này) |
-| Từ đâu | **Chưa có.** Data BTC chỉ ghi tên file lời giảng (`Day01/d01-r1-v01.txt`…), không kèm nội dung. Cần chốt: xin transcript từ BTC, hoặc nhóm viết lại đoạn ngắn từ video Day01 và Day04 |
-| Xử lý những bước gì | Dự kiến: chia mỗi video thành đoạn ngắn, gán mã `<video>#S<n>` (vd `d01-r1-v01#S1`) kèm mốc giây bắt đầu và kết thúc · chỉ chép đoạn trích ngắn hoặc viết lại, không chép nguyên bài |
-| Số dòng / số đoạn | __ (điền khi có) |
-| Phiên bản / ngày lấy | __ |
-| Nhãn | thật (trích) hoặc `synthetic` (viết lại); ghi rõ từng dòng |
-| Giới hạn | Bộ câu thử hiện dựa vào Day01 (d01-r1-v01, d01-r1-v05) và Day04 (d04-r3-v01), nên **ít nhất phải có các video này**. Không được đưa vào data những chủ đề mà câu thử `tu_choi` hay `kho` coi là "không có trong bài" (RAG, transformer: B12, B16, B17) |
+| Từ đâu | **Nhóm viết lại** (track A cho phép: "tự dựng bài có mã đoạn… trích ngắn hoặc viết lại"). Data BTC chỉ ghi tên file lời giảng (`Day01/d01-r1-v01.txt`…), không kèm nội dung. Chủ đề từng đoạn lấy từ **tên ý kiến thức** của bài trong `answers.csv` (`kc_code` + mã câu ôn tập, vd `chatbot_is_app_around_model` / `d01-on-chatbot-la-ung-dung`, `system_prompt_contract` / `d04-on-phan-constraints`); câu chữ do nhóm viết, không chép tài liệu khoá |
+| Xử lý những bước gì | Mỗi video 4 đoạn, mỗi đoạn một ý, 2–4 câu · mã `<video>#S<n>` (S1–S4) · trường: `segment_id`, `video_id`, `start_s`, `end_s`, `content`, `label` · **mốc giây do nhóm tự đặt** (đoạn liền nhau, 130–180 giây), chưa khớp video thật · script kiểm: không đoạn nào chứa "RAG", "transformer", "embedding" |
+| Số dòng / số đoạn | 16 đoạn · 4 video: `d01-r1-v01` (ba yếu tố bùng nổ AI, sinh từng token, chatbot là ứng dụng bọc quanh model, trí nhớ ở ứng dụng) · `d01-r1-v05` (tự tin ≠ đúng, temperature, giới hạn đầu ra, chi phí token) · `d04-r3-v01` (zero/few-shot, khi nào dùng CoT, khi nào không, prompt cụ thể) · `d04-r3-v02` (system prompt: vai trò, ràng buộc, định dạng, lỗi hay gặp) |
+| Phiên bản / ngày lấy | v1 · 27/11/2026 · người viết: Đặng Thanh Hải (nháp bằng Claude Code, xem `docs/ai-usage.md`) |
+| Nhãn | `synthetic` — cả 16 đoạn (trường `label` từng dòng) |
+| Giới hạn | **Không phải lời giảng thật**: nội dung là bản viết lại theo chủ đề, mốc giây tự đặt → bấm mốc trong bản chạy thử không mở đúng giây của video thật; khi có transcript thì thay và ghi phiên bản mới · chỉ 4/≈70 video, chỉ Day01 và Day04 → câu hỏi về ngày khác sẽ ra "không có trong bài" (câu thử H05 dựa vào điều này) · cố ý **không** có RAG, transformer, embedding, agentic fit (câu B12, B16, B17, H05) — thêm đoạn mới phải kiểm lại các câu này · đoạn `d01-r1-v05` có nhiều ví dụ → câu "ví dụ lúc nãy" (B04) phải hỏi lại |
 
 ## Dataset 3 · Bộ câu thử `eval/benchmark.csv`
 
@@ -40,4 +40,4 @@
 | Nhãn | thật (chủ đề) + nhóm viết (câu chữ) |
 | Giới hạn | Chưa có câu `nguoi_dung` · câu dồn vào Day01, Day04 · `expected` mô tả **hành vi và chủ đề**; `pass_criterion` ghi **phạm vi mã** (video hoặc ngày) thay vì mã cụ thể vì chưa có Dataset 2 |
 
-**Data `synthetic` (nhóm tự sinh):** hiện chưa có. Nếu sinh thì ghi cách sinh (prompt hoặc script), seed, người kiểm, số dòng đã kiểm tay. Data tự dựng **không phải bằng chứng pain**.
+**Data `synthetic` (nhóm tự sinh):** `data/lesson/segments.json` (16 đoạn). Cách sinh: Claude Code soạn nháp từng đoạn theo tên `kc_code` của bài, không dùng seed (viết tay, không sinh ngẫu nhiên); người kiểm: Đặng Thanh Hải, kiểm tay __/16 đoạn (đúng kiến thức, không lẫn chủ đề cấm). Data tự dựng **không phải bằng chứng pain**.

@@ -175,3 +175,11 @@ for n in per.values():
 for k, v in bins.items():
     print(f"  {k}: {pct(v, len(per))}")
 print(f"  trung vị: {sorted(per.values())[len(per) // 2]} câu · nhiều nhất: {max(per.values())} câu")
+
+# Ý kiến thức làm chủ đề câu thử data_that (eval/benchmark.csv): đúng lần đầu ở ôn tập cuối ngày.
+print("\n== Ý kiến thức dùng cho câu thử (pre_post_post, lần đầu) ==")
+first = [a for a in ans if a["nguon"] == "pre_post_post" and a["lan_thu"] == "1" and a["was_correct"] in ("True", "False")]
+for k in ("chatbot_is_app_around_model", "cot_task_fit", "system_prompt_contract", "token_generation_loop_count",
+          "temperature_stability_not_truth", "zero_one_few_shot_selection", "agentic_fit_scoring_decision"):
+    v = [a["was_correct"] == "True" for a in first if a["kc_code"] == k]
+    print(f"  {k}: {pct(sum(v), len(v))}")

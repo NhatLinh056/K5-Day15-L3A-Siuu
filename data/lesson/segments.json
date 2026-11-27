@@ -1,0 +1,130 @@
+[
+  {
+    "segment_id": "d01-r1-v01#S1",
+    "video_id": "d01-r1-v01",
+    "start_s": 0,
+    "end_s": 150,
+    "content": "Ba yếu tố cùng lúc làm AI bùng nổ: lượng dữ liệu văn bản rất lớn, kiến trúc model mới học được từ dữ liệu đó, và phần cứng (GPU) đủ mạnh để huấn luyện. Thiếu một trong ba thì không có các model ngôn ngữ lớn như hiện nay.",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d01-r1-v01#S2",
+    "video_id": "d01-r1-v01",
+    "start_s": 150,
+    "end_s": 330,
+    "content": "Model ngôn ngữ không viết cả câu trả lời một lúc. Mỗi vòng, model đọc toàn bộ chữ đã có rồi dự đoán MỘT token tiếp theo, nối token đó vào, rồi lặp lại. Câu trả lời 500 token nghĩa là vòng lặp chạy khoảng 500 lần — vì vậy câu dài thì chậm và tốn hơn.",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d01-r1-v01#S3",
+    "video_id": "d01-r1-v01",
+    "start_s": 330,
+    "end_s": 510,
+    "content": "Chatbot không phải là model. Chatbot là một ứng dụng bọc quanh model: giao diện chat, system prompt, phần lưu lịch sử hội thoại, các công cụ được gọi thêm. Cùng một model có thể nằm trong nhiều chatbot khác nhau, và hai chatbot dùng chung model vẫn trả lời khác nhau vì phần ứng dụng khác nhau.",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d01-r1-v01#S4",
+    "video_id": "d01-r1-v01",
+    "start_s": 510,
+    "end_s": 690,
+    "content": "Model tự nó không nhớ cuộc trò chuyện trước. Cảm giác 'chatbot nhớ mình' là do ứng dụng gửi lại lịch sử hội thoại vào mỗi lượt gọi model. Trí nhớ nằm ở ứng dụng, không nằm trong model; xoá lịch sử thì model không còn biết gì về lượt trước.",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d01-r1-v05#S1",
+    "video_id": "d01-r1-v05",
+    "start_s": 0,
+    "end_s": 170,
+    "content": "Tự tin không có nghĩa là đúng. Ví dụ 1: hỏi về một sự kiện xảy ra sau ngày cắt dữ liệu huấn luyện, model vẫn có thể trả lời trôi chảy nhưng sai, vì nó không biết sự kiện đó. Ví dụ 2: hỏi nguồn của một nhận định, model có thể bịa ra tên bài báo nghe rất thật. Hiện tượng này gọi là ảo giác (hallucination).",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d01-r1-v05#S2",
+    "video_id": "d01-r1-v05",
+    "start_s": 170,
+    "end_s": 330,
+    "content": "Temperature điều chỉnh độ ngẫu nhiên khi chọn token. Temperature thấp làm câu trả lời ổn định hơn giữa các lần hỏi, nhưng KHÔNG làm câu trả lời đúng hơn: một câu sai vẫn có thể bị lặp lại đều đặn ở temperature 0. Ví dụ trong bài: hỏi cùng một phép tính 3 lần ở temperature 0, model sai cả 3 lần theo cùng một cách.",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d01-r1-v05#S3",
+    "video_id": "d01-r1-v05",
+    "start_s": 330,
+    "end_s": 480,
+    "content": "Mỗi lượt gọi model có giới hạn số token đầu ra. Khi chạm giới hạn, câu trả lời bị cắt giữa chừng và lý do dừng (stop reason) cho biết điều đó. Ví dụ trong bài: yêu cầu viết một báo cáo dài, câu trả lời dừng giữa một câu vì hết giới hạn đầu ra, không phải vì model đã viết xong.",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d01-r1-v05#S4",
+    "video_id": "d01-r1-v05",
+    "start_s": 480,
+    "end_s": 620,
+    "content": "Chi phí tính theo token, và token đầu vào với token đầu ra có giá khác nhau; token đầu ra thường đắt hơn. Muốn ước chi phí một tính năng, đếm cả hai phía: system prompt và lịch sử gửi vào mỗi lượt cũng là token đầu vào.",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d04-r3-v01#S1",
+    "video_id": "d04-r3-v01",
+    "start_s": 0,
+    "end_s": 160,
+    "content": "Zero-shot là chỉ mô tả việc cần làm. One-shot và few-shot là đưa thêm một hoặc vài ví dụ mẫu đầu vào → đầu ra. Nên dùng few-shot khi định dạng hoặc phong cách đầu ra khó mô tả bằng lời, hoặc khi zero-shot cho kết quả không đều; ví dụ mẫu phải giống ca thật và đa dạng, nếu không model sẽ chép máy móc.",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d04-r3-v01#S2",
+    "video_id": "d04-r3-v01",
+    "start_s": 160,
+    "end_s": 330,
+    "content": "Chain-of-thought (CoT) là yêu cầu model viết ra các bước suy luận trước khi đưa đáp án. CoT hợp với bài cần nhiều bước: tính toán nhiều phép, suy luận logic, so sánh nhiều điều kiện, lập kế hoạch. Viết ra từng bước giúp model ít bỏ sót bước giữa.",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d04-r3-v01#S3",
+    "video_id": "d04-r3-v01",
+    "start_s": 330,
+    "end_s": 470,
+    "content": "CoT không phải lúc nào cũng nên dùng. Với việc tra cứu một thông tin, phân loại đơn giản hay trích một trường dữ liệu, CoT thường không làm kết quả tốt hơn mà chỉ làm câu trả lời dài hơn, chậm hơn và tốn thêm token đầu ra. Chọn CoT theo loại việc, không bật mặc định cho mọi prompt.",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d04-r3-v01#S4",
+    "video_id": "d04-r3-v01",
+    "start_s": 470,
+    "end_s": 600,
+    "content": "Prompt càng cụ thể càng dễ đoán kết quả: nêu rõ ai đọc, mục đích, độ dài, định dạng. Prompt chung chung như 'viết hay hơn' để model tự đoán ý người viết.",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d04-r3-v02#S1",
+    "video_id": "d04-r3-v02",
+    "start_s": 0,
+    "end_s": 150,
+    "content": "System prompt giống một bản hợp đồng giữa người làm sản phẩm và model. Phần đầu nêu vai trò (model là ai trong sản phẩm) và nhiệm vụ (làm việc gì, cho ai).",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d04-r3-v02#S2",
+    "video_id": "d04-r3-v02",
+    "start_s": 150,
+    "end_s": 320,
+    "content": "Phần ràng buộc (constraints) là phần hay bị bỏ quên nhất: model KHÔNG được làm gì, phạm vi chỉ tới đâu, và khi không biết hoặc ngoài phạm vi thì phải làm gì (nói không biết, hỏi lại, chuyển cho người). Thiếu phần này, model sẽ cố trả lời mọi thứ.",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d04-r3-v02#S3",
+    "video_id": "d04-r3-v02",
+    "start_s": 320,
+    "end_s": 460,
+    "content": "Phần định dạng đầu ra nói rõ trả về dạng gì: đoạn văn, danh sách, JSON với các trường cố định. Dữ liệu đưa vào nên đặt trong thẻ riêng (vd <tai_lieu>…</tai_lieu>) để model phân biệt đâu là hướng dẫn, đâu là dữ liệu.",
+    "label": "synthetic"
+  },
+  {
+    "segment_id": "d04-r3-v02#S4",
+    "video_id": "d04-r3-v02",
+    "start_s": 460,
+    "end_s": 590,
+    "content": "Lỗi hay gặp: nhồi quá nhiều luật vào system prompt, các luật mâu thuẫn nhau, hoặc viết luật mơ hồ ('trả lời thật tốt'). System prompt nên ngắn, mỗi luật kiểm được, và được thử bằng một bộ câu thử mỗi lần sửa.",
+    "label": "synthetic"
+  }
+]
