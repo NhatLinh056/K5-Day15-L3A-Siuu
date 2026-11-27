@@ -82,7 +82,7 @@ Data **không có nội dung câu hỏi**, chỉ có mã dòng, video, độ dà
 
 | Kiểu câu thử | Căn cứ trong data | Mã dòng ví dụ |
 |---|---|---|
-| Câu mơ hồ, rất ngắn → phải hỏi lại | 114/1.108 câu <15 ký tự | `C01056` (2 ký tự, d01-r1-v01) · `C00048` (6, d01-r1-v01) · `C00370` (11, d04-r3-v03) · `C00321` (2, d04-r3-v01) |
+| Câu mơ hồ, rất ngắn → phải hỏi lại | 114/1.108 câu <15 ký tự | `C01056` (2 ký tự, d01-r1-v01) · `C00048` (6, d01-r1-v01) · `C00370` (11, d04-r3-v03) · `C00321` (2, d04-r3-v01) · `C00899` (13, d04-r3-v01) |
 | Câu thiếu ngữ cảnh | 100/1.108 trả lời gắn `missing_context` | `C00983` (d01-r1-v05) · `C00992`, `C00837` (d02-r2-v01) |
 | Câu dễ bị trả lời không dẫn nguồn | 231/562 trả lời không dẫn mốc | `C00218`, `C00955`, `C00951` (d01-r1-v03) · `C00882` (d05-r2-v06) |
 | Câu về ý học viên hay sai | 7 ý kiến thức <70% ở bảng trên | ví dụ `chatbot_is_app_around_model` 25/41 · `cot_task_fit` 16/27 · `system_prompt_contract` 18/27 |

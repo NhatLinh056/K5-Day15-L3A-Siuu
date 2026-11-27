@@ -156,6 +156,9 @@ print("\n== Ví dụ cho bộ câu thử (data_that) ==")
 print("Câu hỏi dưới video <15 ký tự (10 dòng đầu theo thời gian):")
 for c in sorted((c for c in vq if int(c["do_dai_cau_hoi"] or 0) < 15), key=lambda c: c["asked_at"])[:10]:
     print(f"  {c['id']} · {c['transcript']} · {c['do_dai_cau_hoi']} ký tự")
+print("Câu hỏi <15 ký tự dưới video d04-r3-v01 (video của câu thử B02, B05, B07):")
+for c in sorted((c for c in vq if c["transcript"] == "Day04/d04-r3-v01.txt" and int(c["do_dai_cau_hoi"] or 0) < 15), key=lambda c: c["asked_at"]):
+    print(f"  {c['id']} · {c['transcript']} · {c['do_dai_cau_hoi']} ký tự")
 print("Trả lời bị gắn missing_context (5 dòng đầu):")
 for c in [c for c in vq if rep.get(c["id"], {}).get("missing_context") is True][:5]:
     print(f"  {c['id']} · {c['transcript']} · câu hỏi {c['do_dai_cau_hoi']} ký tự")

@@ -35,7 +35,7 @@
 | Dùng để làm gì | Chấm bản chạy thử (`python run.py eval`) |
 | Từ đâu | `data_that`: câu chữ do nhóm viết, kiểu câu hoặc chủ đề lấy từ data (cột `source` ghi mã dòng hoặc `kc_code` và con số) · `tu_viet`: câu tấn công và câu ngoài bài · `nguoi_dung`: sẽ lấy từ phỏng vấn (câu 5b trong [GUIDE](../evidence/interviews/GUIDE.md)) |
 | Xử lý những bước gì | Input có tiền tố `[video <mã>]` để báo học viên đang ở video nào · bỏ mọi thông tin cá nhân |
-| Số dòng / số đoạn | Hải 4 (B01–B04) · Khiêm 3 (B12, B16, B17) · Bắc 3 (B05–B07, chờ ghép) → 10 câu: thuong 3 · kho 5 · tu_choi 2; ≥4/10 từ data thật |
+| Số dòng / số đoạn | 10 câu: thuong 3 · kho 5 · tu_choi 2 (2 câu tấn công B16, B17) · từ data thật 7/10 · B01–B04 Hải · B05–B07 Lê Hải Bắc · B12, B16, B17 Khiêm |
 | Phiên bản / ngày lấy | 27/11/2026, bản CP2 |
 | Nhãn | thật (chủ đề) + nhóm viết (câu chữ) |
 | Giới hạn | Chưa có câu `nguoi_dung` · câu dồn vào Day01, Day04 · `expected` mô tả **hành vi và chủ đề**; `pass_criterion` ghi **phạm vi mã** (video hoặc ngày) thay vì mã cụ thể vì chưa có Dataset 2 |
