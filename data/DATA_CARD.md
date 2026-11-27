@@ -20,7 +20,11 @@
 
 | | |
 |---|---|
+<<<<<<< HEAD
 | Dùng để làm gì | Nguồn cho công cụ tìm đoạn bài trong `codebase/tools.py`. File: **`data/lesson/segments.json`** — mọi mã đoạn AI dẫn ra phải có trong file này (metric `moc_dung_doan`, `khong_vuot_tham_quyen` trong `eval/metric_spec.yaml` kiểm đúng file này) |
+=======
+| Dùng để làm gì | File `data/lesson/segments.json`: nguồn cho công cụ tìm đoạn bài trong `codebase/tools.py`; mọi mã đoạn AI dẫn ra phải có trong file này (metric `moc_dung_doan`, `khong_vuot_tham_quyen`) |
+>>>>>>> 8476b1d897c3e2bf29d1146137a3664088426d76
 | Từ đâu | **Chưa có.** Data BTC chỉ ghi tên file lời giảng (`Day01/d01-r1-v01.txt`…), không kèm nội dung. Cần chốt: xin transcript từ BTC, hoặc nhóm viết lại đoạn ngắn từ video Day01 và Day04 |
 | Xử lý những bước gì | Dự kiến: chia mỗi video thành đoạn ngắn, gán mã `<video>#S<n>` (vd `d01-r1-v01#S1`) kèm mốc giây bắt đầu và kết thúc · chỉ chép đoạn trích ngắn hoặc viết lại, không chép nguyên bài |
 | Số dòng / số đoạn | __ (điền khi có) |
@@ -35,9 +39,9 @@
 | Dùng để làm gì | Chấm bản chạy thử (`python run.py eval`) |
 | Từ đâu | `data_that`: câu chữ do nhóm viết, kiểu câu hoặc chủ đề lấy từ data (cột `source` ghi mã dòng hoặc `kc_code` và con số) · `tu_viet`: câu tấn công và câu ngoài bài · `nguoi_dung`: sẽ lấy từ phỏng vấn (câu 5b trong [GUIDE](../evidence/interviews/GUIDE.md)) |
 | Xử lý những bước gì | Input có tiền tố `[video <mã>]` để báo học viên đang ở video nào · bỏ mọi thông tin cá nhân |
-| Số dòng / số đoạn | 7 câu (thuong 2 · kho 3 · tu_choi 2), 4/7 từ data thật; CP2 cần ≥10 |
+| Số dòng / số đoạn | Hải 4 (B01–B04) · Khiêm 3 (B12, B16, B17) · Bắc 3 (B05–B07, chờ ghép) → 10 câu: thuong 3 · kho 5 · tu_choi 2; ≥4/10 từ data thật |
 | Phiên bản / ngày lấy | 27/11/2026, bản CP2 |
 | Nhãn | thật (chủ đề) + nhóm viết (câu chữ) |
-| Giới hạn | Chưa có câu `nguoi_dung` · câu dồn vào Day01, Day04 · `expected` mô tả **hành vi và chủ đề** chứ chưa có đáp án nguyên văn vì chưa có Dataset 2 |
+| Giới hạn | Chưa có câu `nguoi_dung` · câu dồn vào Day01, Day04 · `expected` mô tả **hành vi và chủ đề**; `pass_criterion` ghi **phạm vi mã** (video hoặc ngày) thay vì mã cụ thể vì chưa có Dataset 2 |
 
 **Data `synthetic` (nhóm tự sinh):** hiện chưa có. Nếu sinh thì ghi cách sinh (prompt hoặc script), seed, người kiểm, số dòng đã kiểm tay. Data tự dựng **không phải bằng chứng pain**.
