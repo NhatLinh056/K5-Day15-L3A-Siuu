@@ -16,11 +16,11 @@
 | Nhãn | thật (đã ẩn danh) |
 | Giới hạn | **Không có câu chữ** học viên hỏi hay AI trả lời, chỉ có độ dài, nên câu thử `data_that` do nhóm viết lại theo kiểu câu/chủ đề · chỉ có trang pre-class (không có LMS, YouTube) · ôn tập cuối ngày chỉ 77/436 người làm, lệch về nhóm học chăm · trường `moc_trich_dan` chỉ có từ 13/11 · người xem giảm từ 416 (Day01) xuống 50 (Day13), nên câu hỏi dồn vào Day01 (339/1.108) |
 
-## Dataset 2 · Lời giảng bài pre-class, chia đoạn có mã mốc (nguồn cho công cụ tìm đoạn)
+## Dataset 2 · Lời giảng bài pre-class, chia đoạn có mã mốc — `data/lesson/segments.json`
 
 | | |
 |---|---|
-| Dùng để làm gì | Nguồn cho công cụ tìm đoạn bài trong `codebase/tools.py`; mọi mã đoạn AI dẫn ra phải có trong file này |
+| Dùng để làm gì | Nguồn cho công cụ tìm đoạn bài trong `codebase/tools.py`. File: **`data/lesson/segments.json`** — mọi mã đoạn AI dẫn ra phải có trong file này (metric `moc_dung_doan`, `khong_vuot_tham_quyen` trong `eval/metric_spec.yaml` kiểm đúng file này) |
 | Từ đâu | **Chưa có.** Data BTC chỉ ghi tên file lời giảng (`Day01/d01-r1-v01.txt`…), không kèm nội dung. Cần chốt: xin transcript từ BTC, hoặc nhóm viết lại đoạn ngắn từ video Day01 và Day04 |
 | Xử lý những bước gì | Dự kiến: chia mỗi video thành đoạn ngắn, gán mã `<video>#S<n>` (vd `d01-r1-v01#S1`) kèm mốc giây bắt đầu và kết thúc · chỉ chép đoạn trích ngắn hoặc viết lại, không chép nguyên bài |
 | Số dòng / số đoạn | __ (điền khi có) |
