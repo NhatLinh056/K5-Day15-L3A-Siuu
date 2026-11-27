@@ -11,9 +11,10 @@
 
 | STT | Họ và tên | Mã học viên | Vai trò | Phần việc chính |
 |---|---|---|---|---|
-| 1 | ____ | ____ | Đội trưởng | ____ |
-| 2 | ____ | ____ | Thành viên | ____ |
-| 3 | ____ | ____ | Thành viên | ____ |
+| 1 | Lê Nhật Linh | 2A202603514 | Đội trưởng | ____ |
+| 2 | Đặng Thanh Hải | 2A202603570 | Thành viên | ____ |
+| 3 | Hoàng Gia Khiêm | 2A202603540 | Thành viên | ____ |
+| 4 | Lê Hải Bắc | 2A202603710 | Thành viên | ____ |
 
 **Quy tắc điền**
 - **Lớp:** `L3A` hoặc `L3B`. **Track:** một chữ `A` (EdTech), `B` (Y tế), `C` (Du lịch), `D` (Thương mại điện tử), `E` (Tài chính) hoặc `F` (Làn khác). **Link repo:** link GitHub công khai của nhóm.
