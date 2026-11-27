@@ -6,8 +6,8 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 
 | Việc | Công cụ AI | AI làm gì | Người kiểm/sửa gì | Ai phụ trách |
 |---|---|---|---|---|
-| Code bản chạy thử | | | | |
-| Prompt / thiết kế lời gọi mô hình | | | | |
+| Code bản chạy thử | Claude | Viết `codebase/ai.py` (gọi Gemini / OpenAI / Claude, lấy token từ usage), `tools.py` (`find_segments`), `agent.py` (luồng 6 bước, chặn mã bịa và lộ hướng dẫn) | Khiêm chạy `python run.py`, `eval --try`, `simulate --try`; ____ đọc lại từng bước | Hoàng Gia Khiêm |
+| Prompt / thiết kế lời gọi mô hình | Claude | Soạn `SYSTEM` trong `agent.py` (4 loại quyết định, trả JSON) | ____ | Hoàng Gia Khiêm |
 | Đào data (viết script đếm, gợi ý nhãn) | Claude Code (Claude Opus 5.5) | Viết `evidence/count.py`, chạy và soạn `evidence/data-mining.md`; viết kịch bản phỏng vấn `evidence/interviews/GUIDE.md` | Kiểm tay __ số (mở CSV bằng Excel/Sheets đếm lại), khớp __/__ · đọc lại cách đếm, mẫu số từng chỉ số | Đặng Thanh Hải |
 | Rà câu hỏi phỏng vấn / khảo sát | | Chỉ rà câu dẫn dắt | | |
 | Viết câu thử (benchmark) | | | Mỗi câu thử có `source`; câu thử AI viết được ghi rõ | |
