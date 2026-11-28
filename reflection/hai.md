@@ -1,7 +1,7 @@
 # Reflection — Đặng Thanh Hải
 
 > Làm ở guide bước 5.3. Hạn: **23:59 Thứ Bảy 28/11**. Mỗi câu 3–6 dòng.
-> *(Bản nháp do Claude soạn từ lịch sử repo — Hải đọc lại, sửa câu 3 bằng lời của mình trước khi push.)*
+> 
 
 1. **Vai trò + phần mình làm:** Thành viên 2 (TV2), phụ trách bằng chứng từ data, dữ liệu bài giảng và chi phí.
    - CP1–CP2: đào data pre-class bằng `evidence/count.py` → `evidence/data-mining.md` (38,3% người xem tua lùi · 41,1% câu trả lời không dẫn mốc · 114/1.108 câu <15 ký tự); viết câu thử B01–B05 và ghép `eval/benchmark.csv`; bản đầu `data/DATA_CARD.md` · commit `3522d35`, `8476b1d`.
