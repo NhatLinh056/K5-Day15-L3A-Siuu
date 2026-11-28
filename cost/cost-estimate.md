@@ -26,30 +26,39 @@
 
 - **Tỉ lệ đạt** dùng để tính: **23/23 (100%)**, lượt `run-2@20261128-004110` (`eval/run-2.csv`).
   - Lượt 2 đạt 100% sau khi sửa đúng 3 lỗi của lượt 1 trên **cùng bộ câu thử**, nên 100% có thể là lạc quan. Mục 4 tính thêm với tỉ lệ lượt 1 (21/23 = 91%) để thấy độ nhạy.
-- **Đo token trên model** `openai/gpt-oss-120b` (theo phân công; ghi lại đúng tên model mà `simulate-N-summary.md` in ra), **tính giá model** `gemini-2.0-flash` và `gpt-4o-mini`.
-  - ⚠️ Lượt 1 (`run-1@20261127-233051`, 21/23) chạy bằng `openai/gpt-oss-120b`; lượt 2 (23/23) chạy bằng `gpt-5-mini`. Mô phỏng đo trên `gpt-oss-120b` mà lấy tỉ lệ đạt của lượt 2 → bản tóm tắt sẽ ghi "khác model". Ghi rõ điều này khi trình bày; tỉ lệ cùng model với mô phỏng là lượt 1 (91%, mục 4).
-  - Các model khác bộ tách token và khác độ dài câu trả lời, nên token đo trên `gpt-oss-120b` chỉ là **xấp xỉ** cho `gemini-2.0-flash` và `gpt-4o-mini`.
+- **Đo token trên model** `gpt-5-mini` (đúng model của lượt 2, nên tỉ lệ đạt và token cùng một model), **tính giá model** `gemini-2.0-flash` và `gpt-4o-mini`; mục 4 tính thêm giá chính `gpt-5-mini`.
+  - Lượt 1 (`run-1@20261127-233051`, 21/23) chạy bằng `openai/gpt-oss-120b`, lượt 2 và mô phỏng chạy bằng `gpt-5-mini`.
+  - `gpt-5-mini` có token suy luận (tính như token ra), còn `gemini-2.0-flash` và `gpt-4o-mini` khác bộ tách token và khác độ dài câu trả lời → token đo trên `gpt-5-mini` chỉ là **xấp xỉ** cho hai model tính giá.
 
 ## 2. Kết quả mô phỏng
 
-Lượt mô phỏng: `cost/simulate-__.csv` · run ID __ · 50 phiên · seed 42 · token đo trên model __
+Lượt mô phỏng: `cost/simulate-1.csv` · run ID `simulate-1@20261128-105736` · 50 phiên (73 lượt hỏi) · seed 42 · token đo trên model `gpt-5-mini` · phiên lỗi 0/50 · trace `traces/simulate-1.jsonl`
 
-*(dán 2 bảng từ `cost/simulate-N-summary.md`: bảng persona và bảng chi phí)*
+*(chép nguyên từ `cost/simulate-1-summary.md`)*
 
-| Model | Chi phí / phiên | Chi phí / task thành công | / tháng — thấp (145) | / tháng — cơ sở (436) | / tháng — cao (721) | / người / tháng (cơ sở) |
-|---|---|---|---|---|---|---|
-| gemini-2.0-flash | | | | | | |
-| gpt-4o-mini | | | | | | |
+| Persona | Số phiên mô phỏng | Lượt hỏi / phiên | Token vào / phiên | Token ra / phiên | Gọi model / phiên | Gọi công cụ / phiên |
+|---|---:|---:|---:|---:|---:|---:|
+| dung_it | 15 | 1 | 1053 | 891 | 0.8 | 0.9 |
+| dung_vua | 12 | 1 | 974 | 930 | 0.8 | 0.8 |
+| dung_nhieu | 23 | 2 | 2081 | 1783 | 1.6 | 1.7 |
 
-Chi phí / task thành công = chi phí trung bình mỗi phiên ÷ tỉ lệ đạt (lượt 2), **không coi như đạt 100%** — ở đây tỉ lệ đo được đúng là 23/23, xem cảnh báo ở mục 1.
+Tỉ lệ đạt dùng để tính: 23/23 (100%) — lượt `run-2@20261128-004110` (`--rate-from eval/run-2.csv`).
+
+| Model (giá) | Chi phí / phiên | Chi phí / task thành công | Chi phí / câu hỏi đạt | / tháng — thấp (145 người) | / tháng — cơ sở (436 người) | / tháng — cao (721 người) | / người / tháng (cơ sở) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| gemini-2.0-flash (vào 0.1 · ra 0.4 $/1M) | $0.00068 | $0.00068 | $0.00046 | $1.30 | $3.92 | $6.49 | $0.0090 |
+| gpt-4o-mini (vào 0.15 · ra 0.6 $/1M) | $0.0010 | $0.0010 | $0.00069 | $1.96 | $5.88 | $9.73 | $0.0135 |
+
+- Chi phí / task thành công = chi phí / phiên ÷ tỉ lệ đạt (lượt 2 đo được đúng 23/23, xem cảnh báo ở mục 1). Chi phí / câu hỏi đạt = chi phí / phiên ÷ 1,5 lượt hỏi / phiên ÷ tỉ lệ đạt.
+- Phiên có lời gọi model < 1 vì 7/50 phiên chỉ gồm câu quá ngắn được code hỏi lại luôn, không gọi model (`cost/simulate-1.csv` cột `model_calls`).
 
 ## 3. So với impact
 
 - **Impact / tháng** (`spec.md` §2): ~1.580 câu hỏi / tháng × ~4 phút dò lại đoạn bài ≈ **105 giờ học viên / tháng** (số câu từ data; 4 phút là mức bảo thủ trong khoảng 5–15 phút 7/10 người khảo sát kể).
 - **Impact / người / tháng:** 105 giờ ÷ 145 người có hỏi ≈ **43 phút / người / tháng** (≈ 10,9 câu × 4 phút).
-- **Chi phí / người / tháng** (cơ sở, model __): __ *(lấy từ mục 2)*
-- **Chi phí cho 1 giờ học viên tiết kiệm:** chi phí / tháng (thấp, 145 người) ÷ 105 giờ = __ USD / giờ.
-- **Kết luận một dòng — đáng làm không:** __ *(vd: "Đáng: ~__ USD / người / tháng để tiết kiệm ~43 phút dò bài; kể cả ở mức cao 721 người với persona hỏi gấp đôi data, tổng chỉ ~__ USD / tháng.")*
+- **Chi phí / người / tháng** (cơ sở): **$0.0135** (`gpt-4o-mini`) · $0.0090 (`gemini-2.0-flash`) · $0.040 (`gpt-5-mini`, tính thêm ở mục 4).
+- **Chi phí cho 1 giờ học viên tiết kiệm:** kịch bản thấp (145 người có hỏi, khớp với 105 giờ của §2): $1.96 ÷ 105 giờ ≈ **$0.019 / giờ** (`gpt-4o-mini`) · $5.79 ÷ 105 ≈ $0.055 / giờ (`gpt-5-mini`).
+- **Kết luận một dòng — đáng làm không:** **Đáng** — khoảng 1–4 cent / người / tháng để tiết kiệm ~43 phút dò lại bài; kể cả ở mức cao 721 người với persona hỏi gấp đôi data, tiền model chỉ $9.73 / tháng (`gpt-4o-mini`) hay $28.80 / tháng (`gpt-5-mini`). Chi phí đáng lo là **giờ công viết đoạn bài có mốc** (mục 4), không phải tiền model.
 
 ## 4. *(Muốn sâu hơn, không bắt buộc)*
 
@@ -57,11 +66,12 @@ Chi phí / task thành công = chi phí trung bình mỗi phiên ÷ tỉ lệ đ
 
 | Cần gạt | Thay đổi | Ảnh hưởng chi phí | Cách tính |
 |---|---|---|---|
-| Tỉ lệ đạt | 100% (lượt 2) → 91% (lượt 1, 21/23) | Chi phí / task thành công **+10%** | ÷ 0,91 thay vì ÷ 1,00 |
-| Persona sát data | 19,5 → 10,9 câu / người / tháng | Chi phí / tháng **−44%** | × 10,9 / 19,5 |
-| Người dùng thật | 436 → 145 (chỉ người có hỏi) | Chi phí / tháng **−67%** | = kịch bản thấp |
-| Model rẻ hơn | gpt-4o-mini → gemini-2.0-flash | __ | đọc thẳng 2 dòng ở mục 2 |
-| Cache phần cố định | system prompt (~__ token) lặp lại mỗi lượt; gpt-4o-mini cache vào 0,075 thay vì 0,15 | phần token vào lặp lại **−50%** | token system prompt × số lượt × (0,15 − 0,075) |
+| **Giá model thật đã chạy** | gpt-4o-mini → `gpt-5-mini` (0,25 / 2,00, có trong bảng giá của đề) | /phiên $0.0010 → **$0.0030** (×3) · / tháng thấp $5.79 · cơ sở $17.42 · cao $28.80 · / người $0.040 | token từng phiên trong `cost/simulate-1.csv` × giá, gộp theo persona đúng công thức của `simulate.py` (cùng công thức ra đúng $1.96 / $5.88 / $9.73 của gpt-4o-mini) — *tính thêm, không do simulate in* |
+| Tỉ lệ đạt | 100% (lượt 2) → 91% (lượt 1, 21/23) | Chi phí / task thành công **+10%**: gpt-4o-mini $0.0010 → $0.0011 | ÷ 0,91 thay vì ÷ 1,00 |
+| Persona sát data | 19,5 → 10,9 câu / người / tháng | Chi phí / tháng **−44%**: gpt-4o-mini cơ sở $5.88 → ~$3.29 | × 10,9 / 19,5 |
+| Người dùng thật | 436 → 145 (chỉ người có hỏi) | Chi phí / tháng **−67%**: $5.88 → $1.96 | = kịch bản thấp |
+| Model rẻ hơn | gpt-4o-mini → gemini-2.0-flash | **−33%**: $5.88 → $3.92 / tháng (cơ sở) | đọc thẳng 2 dòng ở mục 2 |
+| Cache phần cố định | hướng dẫn hệ thống lặp lại mỗi lượt; gpt-4o-mini cache vào 0,075 thay vì 0,15 | phần token vào lặp lại **−50%** · token vào trung bình ~1.030 / lượt, token ra ~900 / lượt | chưa tách được số token của riêng hướng dẫn hệ thống — phải đếm thêm |
 | Cắt ngữ cảnh | `MAX_CONTEXT = 8` đoạn → 3 đoạn (`codebase/agent.py`) | token vào giảm theo số đoạn bỏ | chưa đo — phải chạy lại để biết ảnh hưởng tới tỉ lệ đạt |
 | Hỏi lại không gọi model | câu quá ngắn được code hỏi lại luôn, 0 lần gọi model | đã có: 3/23 câu lượt 2 (B03, H04, BAC2) tốn 0 token | `eval/run-2.csv` cột `model_calls` |
 
