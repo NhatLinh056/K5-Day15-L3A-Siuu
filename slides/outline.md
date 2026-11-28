@@ -8,7 +8,7 @@
 | 1 | Người dùng & pain | Ai · việc gì · chỗ đau + số và trích dẫn | `evidence/summary.md` | ☑ `demo-slides.html` |
 | 2 | Vì sao chọn bài này | Bảng impact rút gọn + hướng bị loại | `spec.md` §2 | ☑ `demo-slides.html` |
 | 3 | Giải pháp | Lát cắt một câu · sơ đồ · AI tự làm đến đâu, vì sao | `spec.md` §4 | ☑ `demo-slides.html` |
-| 4 | Demo live | 1 trường hợp thường + 1 trường hợp khó (B01, B04); output lượt 2 có sẵn trong slide khi mất mạng; cần quay video dự phòng trên máy demo | `eval/benchmark.csv`, `eval/run-2.csv` | ☑ kịch bản · ☐ video |
+| 4 | Demo live | 1 trường hợp thường + 1 trường hợp khó (B01, B04); output lượt 2 có sẵn trong slide khi mất mạng; link video dự phòng nộp qua form CP4 | `eval/benchmark.csv`, `eval/run-2.csv` | ☑ kịch bản · link video nộp form CP4 |
 | 5 | **Đánh giá thế nào** | Dataset · bộ câu thử · metric · lượt 1 → lượt 2 so với chuẩn "đạt" (kèm run ID) · lỗi chính | `eval/README.md`, `eval/report.md` | ☑ `demo-slides.html` |
 | 6 | **Chi phí khi dùng thật** | Chi phí / task thành công · 3 kịch bản · so với impact | `cost/cost-estimate.md` | ☑ `demo-slides.html` |
 | 7 | Kết luận | Tiếp tục thử nội bộ, dẫn số ở trang 1, 5, 6 | — | ☑ `demo-slides.html` |
