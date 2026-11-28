@@ -13,7 +13,7 @@
 |---|---|---|---|---|
 | 1 | Lê Nhật Linh | 2A202603514 | Đội trưởng | Mạch Pain → Impact (`canvas.md`, `spec.md` §0–§2, §4), điều phối và nộp checkpoint |
 | 2 | Đặng Thanh Hải | 2A202603570 | Thành viên | Đào data pre-class (`evidence/count.py`, `evidence/data-mining.md`) và kịch bản phỏng vấn |
-| 3 | Hoàng Gia Khiêm | 2A202603540 | Thành viên | Bản chạy thử (`codebase/`) và bộ câu thử + metric (`eval/`, `data/DATA_CARD.md`) |
+| 3 | Hoàng Gia Khiêm | 2A202603540 | Thành viên | Bản chạy thử (`codebase/`), metric (`eval/metric_spec.yaml`), một lần cải tiến + lượt 2 + báo cáo (`eval/run-2.csv`, `eval/report.md`) |
 | 4 | Lê Hải Bắc | 2A202603710 | Thành viên | Phỏng vấn học viên P1–P3 (`evidence/interviews/`) và tổng hợp `evidence/summary.md` |
 
 **Quy tắc điền**
