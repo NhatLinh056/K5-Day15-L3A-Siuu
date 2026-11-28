@@ -122,5 +122,5 @@ Nhóm dùng Claude Code để viết script đào data (`evidence/count.py`), so
 | 4 | Bản chạy thử làm trọn lát cắt | `codebase/` · lệnh ở mục "Lệnh" |
 | 5 | Định nghĩa "tốt" + bộ câu thử | `data/DATA_CARD.md` · `eval/` |
 | 6 | Mô phỏng chi phí khi dùng thật | `cost/` |
-| 7 | Slide + demo + video dự phòng | `demo-slides.html` (mở trực tiếp, không cần mạng) · demo B01/B04 · video dự phòng: nộp link mở công khai tại form CP4 |
+| 7 | Slide + demo + video dự phòng | `demo-slides.pdf` ở gốc repo · `demo-slides.html` để trình chiếu tương tác · [video demo dự phòng](https://drive.google.com/file/d/1Vsw4_0a1KaT-uX5XtCxLCfcXd5ptff57/view?usp=sharing) (link mở công khai, nộp tại form CP4) |
 | + | *Bonus:* người dùng thử | `validation/log.md` |

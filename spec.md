@@ -141,6 +141,7 @@ flowchart TD
 | 28/11 00:41 | Sửa hợp đồng đầu ra trong `codebase/agent.py`, chạy lượt 2 `run-2@20261128-004110` bằng `gpt-5-mini` và ghi `eval/report.md` | B04, B05 trượt ở lượt 1; lượt 2 đạt 23/23 nhưng đổi cả model, nên báo rõ giới hạn so sánh |
 | 28/11 10:57 | Chạy mô phỏng 50 phiên `simulate-1@20261128-105736` bằng `gpt-5-mini`, hoàn thiện bảng chi phí CP4 và `traces/simulate-1.jsonl` | Đo token thật trên cùng model với lượt eval 2, so chi phí / task và 3 kịch bản người dùng với impact §2 |
 | 28/11, trước CP4 | Đồng bộ `eval/README.md`, `spec.md` §7–§9 và slide HTML; giao Lê Hải Bắc thuyết trình | Đưa kết quả lượt 2 và mô phỏng vào hồ sơ CP4, nói rõ giới hạn dữ liệu synthetic và so sánh khác model |
+| 28/11, trước CP4 | Xuất `demo-slides.pdf` 8 trang từ slide HTML, ghi link video Drive dự phòng vào README và dàn slide | Form CP4 yêu cầu link PDF ở gốc repo và link video mở công khai |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
