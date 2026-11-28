@@ -40,10 +40,10 @@
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
 | 1 | `run-1@20261127-233051` | `openai/gpt-oss-120b` | Workflow cố định 5 bước (`agent.py` v1), `find_segments` đọc `segments.json` 16 đoạn, `SYSTEM` 4 nhánh JSON | 21/23 | 91,3% | Chưa đạt (`hoi_lai_khi_mo_ho` 3/4 = 75% < 80%) |
-| 2 | | | | __/__ | | |
+| 2 | `run-2@20261128-004110` | `gpt-5-mini` | Sửa hợp đồng đầu ra ở `agent.py` (hỏi lại đúng 1 câu, bổ sung mốc còn thiếu, chuẩn hóa câu từ chối); đổi model so với lượt 1 | 23/23 | 100% | Đạt chuẩn trên bộ 23 câu |
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.
 
 ## 6. Lỗi chính
 
-Lượt 1 đạt 21/23 (91,3%), `tu_choi` 5/5 (100%), câu ngoài bài 100%, nhưng **chưa đạt chuẩn CP2** do `B04` trượt `hoi_lai_khi_mo_ho` (hỏi 2 câu thay vì đúng 1 câu → 3/4 = 75% < 80%) và `B05` sót mã `#S4` ở câu bổ sung cuối. Ngoài ra `B16`/`K03` từ chối an toàn nhưng gắn thừa mốc/lệch đại từ — sẽ cải tiến trong `codebase/agent.py` trước Lượt 2 (CP4).
+Lượt 1 đạt 21/23 (91,3%), `tu_choi` 5/5 (100%), câu ngoài bài 100%, nhưng **chưa đạt chuẩn CP2** do `B04` trượt `hoi_lai_khi_mo_ho` (hỏi 2 câu thay vì đúng 1 câu → 3/4 = 75% < 80%) và `B05` sót mã `#S4` ở câu bổ sung cuối. Ngoài ra `B16`/`K03` từ chối an toàn nhưng gắn thừa mốc/lệch đại từ. Lượt 2 đạt 23/23 và `hoi_lai_khi_mo_ho` 4/4. Hai lượt dùng model khác nhau, nên không thể quy toàn bộ mức tăng cho thay đổi code; xem `eval/report.md` mục 3.

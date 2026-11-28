@@ -25,7 +25,7 @@
   | `gemini-2.0-flash` | 0,10 | 0,40 | ⚠️ **Không có trong bảng giá của đề** (bảng chỉ có Gemini 3.x / 4.x). Nguồn tự ghi trong `personas.yaml`: https://ai.google.dev/pricing, xem 25/11/2026 — người đã xem trang cần xác nhận lại, hoặc đổi sang model có trong bảng (vd `gpt-5-mini` 0,25 / 2,00 — model của lượt eval) |
 
 - **Tỉ lệ đạt** dùng để tính: **23/23 (100%)**, lượt `run-2@20261128-004110` (`eval/run-2.csv`).
-  - Lượt 2 đạt 100% sau khi sửa đúng 3 lỗi của lượt 1 trên **cùng bộ câu thử**, nên 100% có thể là lạc quan. Mục 4 tính thêm với tỉ lệ lượt 1 (21/23 = 91%) để thấy độ nhạy.
+  - Lượt 2 đạt 100% sau khi sửa code và đổi model trên **cùng bộ câu thử**, nên 100% có thể là lạc quan. Mục 4 tính thêm với tỉ lệ lượt 1 (21/23 = 91%) để thấy độ nhạy.
 - **Đo token trên model** `gpt-5-mini` (đúng model của lượt 2, nên tỉ lệ đạt và token cùng một model), **tính giá model** `gemini-2.0-flash` và `gpt-4o-mini`; mục 4 tính thêm giá chính `gpt-5-mini`.
   - Lượt 1 (`run-1@20261127-233051`, 21/23) chạy bằng `openai/gpt-oss-120b`, lượt 2 và mô phỏng chạy bằng `gpt-5-mini`.
   - `gpt-5-mini` có token suy luận (tính như token ra), còn `gemini-2.0-flash` và `gpt-4o-mini` khác bộ tách token và khác độ dài câu trả lời → token đo trên `gpt-5-mini` chỉ là **xấp xỉ** cho hai model tính giá.
@@ -58,7 +58,7 @@ Tỉ lệ đạt dùng để tính: 23/23 (100%) — lượt `run-2@20261128-004
 - **Impact / người / tháng:** 105 giờ ÷ 145 người có hỏi ≈ **43 phút / người / tháng** (≈ 10,9 câu × 4 phút).
 - **Chi phí / người / tháng** (cơ sở): **$0.0135** (`gpt-4o-mini`) · $0.0090 (`gemini-2.0-flash`) · $0.040 (`gpt-5-mini`, tính thêm ở mục 4).
 - **Chi phí cho 1 giờ học viên tiết kiệm:** kịch bản thấp (145 người có hỏi, khớp với 105 giờ của §2): $1.96 ÷ 105 giờ ≈ **$0.019 / giờ** (`gpt-4o-mini`) · $5.79 ÷ 105 ≈ $0.055 / giờ (`gpt-5-mini`).
-- **Kết luận một dòng — đáng làm không:** **Đáng** — khoảng 1–4 cent / người / tháng để tiết kiệm ~43 phút dò lại bài; kể cả ở mức cao 721 người với persona hỏi gấp đôi data, tiền model chỉ $9.73 / tháng (`gpt-4o-mini`) hay $28.80 / tháng (`gpt-5-mini`). Chi phí đáng lo là **giờ công viết đoạn bài có mốc** (mục 4), không phải tiền model.
+- **Kết luận một dòng — đáng làm không:** **Đáng thử nội bộ** — tiền model khoảng 1–4 cent / người / tháng; ~43 phút dò bài là **tiềm năng từ phép tính §2, chưa đo tiết kiệm thật**. Kể cả mức cao 721 người, tiền model ước tính $9.73 / tháng (`gpt-4o-mini`) hoặc $28.80 / tháng (`gpt-5-mini`). Chi phí đáng lo là giờ công viết đoạn bài có mốc (mục 4).
 
 ## 4. *(Muốn sâu hơn, không bắt buộc)*
 

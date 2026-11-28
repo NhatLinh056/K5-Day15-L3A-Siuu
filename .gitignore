@@ -39,6 +39,9 @@ data-btc/
 # Bộ đề BTC (đọc cục bộ, không commit)
 de-bai/
 
+# Bản bàn giao gốc của Hải; file nộp đã chuyển vào cost/ và spec.md
+hai/
+
 # File tạm IDE / OS / Excel khi mở CSV chấm điểm
 ~$*.csv
 ~$*.xlsx
