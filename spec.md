@@ -147,4 +147,4 @@ flowchart TD
 
 | Thời điểm | Đổi gì | Vì sao |
 |---|---|---|
-|  |  |  |
+| 28/11 22:05 | Thêm reflection cá nhân tại `reflection/linh.md` | Hoàn thiện phần cá nhân của đội trưởng (guide bước 5.3) trước hạn 23:59 |
